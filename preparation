@@ -1,0 +1,31 @@
+to create/ configure kubernetes cluster:
+
+under azure search, search for kubernetes services.
+select create button besides + symbol.
+
+
+provide valid subscription
+create Resource group:;  aks-rg1
+
+kubernetes cluster name: aks demo1
+region: central US
+kubernetes version: latest (not the preview one)
+
+primary node pool:
+
+node size:  standard DS2v2  (2vcpu 7gb ram)  (reason: we need enhanced networking. Azure-mysql-for-aks requires 
+enhanced networking enabled on your servers so that the communication from mysql and vm will be enhanced)
+
+node count: 1 (of our choice)
+	press next
+vm scale sets: enabled (to scale our cluster if required)
+	press next  (will go to Authentication)
+Authentication method: Syste-assigned managed identity (for service principal, container registry is disabled)
+        press next (will go to networking)
+Network configuration: Advanced (to make it like the production one)
+Network policy: Azure(installs  azure CNI (container network interface plugin))
+	press next
+As of now leave all default and press next
+click on review and create
+
+we can check what is going on under overview and even in notifications section
